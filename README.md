@@ -166,10 +166,7 @@ Online adaptation via Test-Time Adaptive Scaling (TTAS) with EMA correction.
 ## Datasets
 
 We use the [MATH](https://github.com/hendrycks/math) dataset (Hendrycks et al.,
-NeurIPS 2021) for mathematical reasoning evaluation. Problems are drawn from
-Levels 3-5 across 7 subjects (algebra, geometry, precalculus, etc.), stratified
-by subject and difficulty.
-
+NeurIPS 2021), MMLU-Pro and GPQA.
 ## Baselines
 
 - **Fixed (Uniform)**: Equal `max_tokens` for all agents
