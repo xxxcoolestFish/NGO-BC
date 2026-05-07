@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Experiment outputs
+results/*.json
+logs/
+
+# Models
+*.pt
+*.pth
+
+# Data
+data/math/
+
+# OS
+.DS_Store
