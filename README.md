@@ -91,6 +91,25 @@ python scripts/calibrate.py --phase train --obs-dir logs/obs
 python experiments/run_pipeline.py --n 50 --gat logs/gat.pt
 ```
 
+### Experiments
+
+| Script | Description | Requires |
+|--------|-------------|----------|
+| `experiments/run_pipeline.py` | 3-node serial pipeline (Decomposer→Solver→Verifier) | — |
+| `experiments/run_parallel.py` | 5-node parallel aggregation with structural pooling | — |
+| `experiments/run_mad.py` | 3-node multi-round debate with cross-round MWU | — |
+| `experiments/run_ablation.py` | Ablation study (no GAT / no TTAS / no MPC / no Pooling) | MetaGPT |
+| `experiments/run_gpqa.py` | Domain adaptation on GPQA Diamond | MetaGPT |
+| `experiments/run_quality_curve.py` | Per-role accuracy vs max_tokens curves | — |
+| `scripts/calibrate.py` | Phase 0 observation → EM calibration → GAT training | — |
+| `scripts/plot_figures.py` | Paper Figure 1-3 generation | — |
+| `scripts/plot_quality_curve.py` | Quality curve fitting plots | — |
+
+### Datasets
+
+- **MATH** (Hendrycks et al., 2021): Levels 3-5, 7 subjects. Place under `data/math/` in HuggingFace datasets format.
+- **GPQA Diamond** (Rein et al., 2023): Graduate-level multiple-choice QA. Place the CSV at `data/GPQA/gpqa_diamond.csv`.
+
 ## Code Structure
 
 ```
@@ -103,7 +122,7 @@ NGO-BC/
 │   ├── product_kkt.py            # Product KKT closed-form solver
 │   ├── parallel_product_kkt.py   # Structural pooling for parallel DAGs
 │   ├── psbc_m.py                 # Multi-round MWU macro scheduler
-│   ├── kkt.py                    # NodeParams, AllocationResult, sum-KKT
+│   ├── kkt.py                    # NodeParams, AllocationResult
 │   ├── dag.py                    # DAG utilities (topo sort, weights, etc.)
 │   ├── dag_gat.py                # GAT-Lookahead network (3-head)
 │   ├── gat_oracle.py             # TTAS online adaptation wrapper
@@ -112,6 +131,9 @@ NGO-BC/
 │   ├── baselines.py              # Fixed / Greedy baseline allocators
 │   ├── agent_pool.py             # Agent pool (for dynamic topology)
 │   ├── topology_predictor.py     # Monte-Carlo topology sampling
+│   ├── vsn.py                    # Virtual Super-Node 2D solver
+│   ├── math_dataset.py           # MATH dataset loader
+│   └── gpqa_dataset.py           # GPQA Diamond dataset loader
 │   ├── vsn.py                    # Virtual Super-Node 2D solver
 │   └── math_dataset.py           # MATH dataset loader
 ├── mas/                          # Minimal multi-agent system
